@@ -1,0 +1,45 @@
+terminal SELECT, FROM, WHERE, AND, OR;
+terminal EQ, NEQ, LT, LE, GT, GE;
+terminal COMMA, SEMICOLON, STAR;
+terminal String ID, STRING;
+terminal Double NUMBER;
+
+non terminal query, select_list, column_list, table_name, where_clause_opt, where_clause, condition, value;
+
+start with query;
+
+
+query ::= SELECT select_list FROM table_name where_clause_opt SEMICOLON
+    ;
+
+where_clause_opt ::= /* vazio */
+                   | WHERE where_clause
+                   ;
+
+select_list ::= STAR
+              | column_list
+              ;
+
+column_list ::= ID
+              | ID COMMA column_list
+              ;
+
+table_name ::= ID
+             ;
+
+where_clause ::= condition
+              | condition AND where_clause
+              | condition OR where_clause
+              ;
+
+condition ::= ID EQ value
+            | ID NEQ value
+            | ID LT value
+            | ID LE value
+            | ID GT value
+            | ID GE value
+            ;
+
+value ::= STRING
+        | NUMBER
+        ;
