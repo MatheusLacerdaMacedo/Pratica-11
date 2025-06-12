@@ -1,0 +1,10 @@
+{
+  "nome": "Matheus",
+  "idade": 20,
+  "skills": ["Java", "C#", "SQL"],
+  "ativo": true,
+  "projetos": [
+    {"nome": "Sistema1", "ano": 2023},
+    {"nome": "Sistema2", "ano": 2024}
+  ]
+}

@@ -1,0 +1,41 @@
+import java_cup.runtime.*;
+
+terminal LBRACK, RBRACK, LBRACE, RBRACE, COLON, COMMA;
+terminal String STRING;
+terminal Integer NUMBER;
+terminal NULL, TRUE, FALSE;
+
+non terminal json, obj, members, pair, array, elements, value;
+
+start with json;
+
+json ::= obj
+       | array
+       ;
+
+obj ::= LBRACE RBRACE
+     | LBRACE members RBRACE
+     ;
+
+members ::= pair
+          | pair COMMA members
+          ;
+
+pair ::= STRING COLON value;
+
+array ::= LBRACK RBRACK
+       | LBRACK elements RBRACK
+       ;
+
+elements ::= value
+          | value COMMA elements
+          ;
+
+value ::= STRING
+        | NUMBER
+        | obj
+        | array
+        | NULL
+        | TRUE
+        | FALSE
+        ;
